@@ -6,10 +6,20 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
+	"github.com/jinzhu/gorm"
+
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 func main() {
 	fmt.Println("servin up some hotcakes...")
+
+	db, err := gorm.Open("mysql", "user:password@/dbname?charset=utf8&parseTime=True&loc=Local")
+	if err != nil {
+		panic(err)
+	}
+	defer db.Close()
+
 	handleRequests()
 }
 
