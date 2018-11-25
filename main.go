@@ -16,7 +16,8 @@ func main() {
 
 	db, err := gorm.Open("mysql", "user:password@/dbname?charset=utf8&parseTime=True&loc=Local")
 	if err != nil {
-		panic(err)
+		fmt.Println(err.Error())
+		panic("Failed to connect to db")
 	}
 	defer db.Close()
 
